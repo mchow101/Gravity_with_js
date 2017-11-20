@@ -75,8 +75,12 @@ function Ball(x, y, dx, dy, gravity, radius, color) {
         else {
             this.dy+=this.gravity;
         }
+        if(Math.abs(this.dy) < 2)
+        	this.dy = 0;
         if((this.x+this.radius+this.dx>=canvas.width)||this.x-this.radius<=0)
             this.dx*=-1;
+        if(this.dy == 0)
+            this.dx*=this.conservedEnergy;
         
         this.y+=this.dy;
         this.x+=this.dx;
